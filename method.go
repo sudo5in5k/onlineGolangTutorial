@@ -14,6 +14,7 @@ func cal(x int, y int) (plus int, minus int, multiple int, division float64) {
 	return
 }
 
+// inner function
 func noNameFunc() {
 	f := func(x int) {
 		fmt.Println(x)
@@ -25,12 +26,14 @@ func noNameFunc() {
 	}(5)
 }
 
+// closure
 func calArea(pi float64) func(radius int) float64 {
 	return func(radius int) float64 {
 		return pi * float64(radius*radius)
 	}
 }
 
+// closure
 func calFib(n int) func() int {
 	c1, c2 := 0, 1
 	return func() int {
@@ -41,6 +44,14 @@ func calFib(n int) func() int {
 	}
 }
 
+// 可変長引数
+func calSum(args ...int) (sum int) {
+	for _, arg := range args {
+		sum += arg
+	}
+	return
+}
+
 func main() {
 	fmt.Println(cal(2, 3))
 	noNameFunc()
@@ -49,4 +60,8 @@ func main() {
 
 	f := calFib(4)
 	fmt.Println(f())
+
+	fmt.Println(calSum(2, 4, 6, 8, 10))
+	s := []int{1, 3, 5, 7, 9}
+	fmt.Println(calSum(s...))
 }

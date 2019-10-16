@@ -13,7 +13,7 @@ func main() {
 func logging(file string) {
 	logFile, err := os.OpenFile(file, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal(err.Error())
 	}
 	defer logFile.Close()
 	multiLogFile := io.MultiWriter(os.Stdout, logFile)
